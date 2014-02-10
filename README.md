@@ -27,7 +27,7 @@ Assuming that your DocumentRoot is `/public/`, your site will now be available a
 
 If required, the DocumentRoot and other VM/LAMP settings can be adjusted in the config files...
 
-__(Use `vagrant reload` after changing any settings)__
+_(Use `vagrant reload` after changing any settings)_
 
 ### Vagrantfile
 
