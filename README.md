@@ -10,36 +10,38 @@ A Vagrantfile & Puppet manifest that will set you up with:
 
 First, **make sure any [System Prerequisites](#system-prerequisites) are satisfied** (see below).
 
-    cd ~/Sites/project
+    cd ~/Sites/myproject
     git submodule add https://github.com/galbus/Vagrant-PHP-Box.git vagrant
     cd vagrant
     vagrant up
 
-Next, `vi /etc/hosts` and add:
+Next,
+
+    vi /etc/hosts
+
+and add the following host:
 
     10.33.33.10 app.local
 
-Your site is now available at http://app.local.
+Assuming that your DocumentRoot is `/public/`, your site will now be available at http://app.local.
 
-### Config Files
+If required, the DocumentRoot and other VM/LAMP settings can be adjusted in the config files...
 
-The VM and LAMP comfiguration can be changed by editing the config files below.
+__(Use `vagrant reload` after changing any settings)__
 
-After any editing use `vagrant reload` (or `vagrant destroy` followed by `vagrant up`) to bring the VM back up with the new settings.
-
-#### Vagrantfile
+### Vagrantfile
 
 `Vagrantfile`
 
 The Vagrantfile is mainly used to set the VM URL, hostname and VM params (e.g. memory) as well as set the Puppet file paths.
 
-#### Puppet Manifest
+### Puppet Manifest
 
 `puppet/manifests/site.pp`
 
 The Puppet files deal with the installation of Apache, MySQL and PHP and any other other terminal commands that are applied to the VM when it is set up.
 
-#### Virtual Hosts
+### Virtual Hosts
 
 `puppet/manifests/vhosts/app.local.pp`
 
