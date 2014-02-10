@@ -17,7 +17,7 @@ First, **make sure any [System Prerequisites](#system-prerequisites) are satisfi
 
 Next,
 
-    vi /etc/hosts
+    sudo vi /etc/hosts
 
 and add the following host:
 
