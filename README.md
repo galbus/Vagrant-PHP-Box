@@ -6,16 +6,20 @@ A Vagrantfile & Puppet manifest that will set you up with:
 * MySQL
 * PHP
 
-## Using the Git Submodule
+## Using as a Git Submodule in your project
 
 First, **make sure any [System Prerequisites](#system-prerequisites) are satisfied** (see below).
 
-    mkdir ~/Sites/project
     cd ~/Sites/project
-    git submodule add git://github.com/galbus/Vagrant-PHP-Box vagrant
-    git submodule update
+    git submodule add https://github.com/galbus/Vagrant-PHP-Box.git vagrant
     cd vagrant
     vagrant up
+
+Next, `vi /etc/hosts` and add:
+
+    10.33.33.10 app.local
+
+Your site is now available at http://app.local.
 
 ### Config Files
 
