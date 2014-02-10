@@ -33,24 +33,25 @@ file { "/var/www/app.local":
 }
 
 class { "apache": 
-	mpm_module => 'prefork'
+    mpm_module    => 'prefork',
+    default_vhost => false,
 }
 
 class { "apache::mod::php": }
 
 class { '::mysql::server':
-	root_password => 'password',
-	override_options => {
-		'mysqld' => { 
-			'max_connections' => '1024',
-		} 
-	},
-	databases => {
-		'database' => {
-			ensure  => 'present',
-			charset => 'utf8',
-		},
-	},
+    root_password => 'password',
+    override_options => {
+        'mysqld' => { 
+            'max_connections' => '1024',
+        } 
+    },
+    databases => {
+        'database' => {
+            ensure  => 'present',
+            charset => 'utf8',
+        },
+    },
 }
 
 # vhost config files
