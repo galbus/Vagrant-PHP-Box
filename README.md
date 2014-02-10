@@ -99,8 +99,11 @@ And it all works OK for me.
 
 ## References & Further Reading
 
-* http://joshuaestes.me/post/46145838113/vagrant-puppet-and-symfony2-the-three-musketeers
 * http://pragmaticstudio.com/blog/2010/9/23/install-rails-ruby-mac
+* http://joshuaestes.me/post/46145838113/vagrant-puppet-and-symfony2-the-three-musketeers
 * https://github.com/patrickdlee/vagrant-examples
 * http://stackoverflow.com/questions/16871685/permission-denied-issues-when-use-rvm-install-ruby-2-0-0
+* https://sites.google.com/site/timyimblog/blog/deploying-php53-on-centos-with-puppet#TOC-Full-Version-of-php.pp
+* http://www.littlehart.net/atthekeyboard/2012/04/15/build-php-54-on-centos-with-vagrant/
+* http://blog.servergrove.com/2013/01/11/creating-development-environments-with-vagrant-and-puppet/
 * https://ask.puppetlabs.com/question/67/unable-to-run-puppet-on-osx-mountain-lion/
