@@ -122,6 +122,18 @@ And it all works OK for me.
 
 **DO NOT** `gem install librarian-puppet`. The Gem install of Librarian only works with the native Puppet package - we use the Gem package due to install issues across OSX versions.
 
+## TODO
+
+Add support for...
+
+1. CentOS/RHEL (e.g. use yum instead of apt-get)
+2. MySQL schema import on provisioning
+3. MySQL updates
+4. Use YAML config file instead of editing Vagrantfile and site.pp
+5. Node.js
+6. Mongo/Redis
+7. Clusters
+
 ## References & Further Reading
 
 * http://pragmaticstudio.com/blog/2010/9/23/install-rails-ruby-mac
