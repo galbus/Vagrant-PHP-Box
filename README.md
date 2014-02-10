@@ -55,21 +55,21 @@ Instructions for installing required programs on OSX Mountain Lion.
 OSX comes it's own copy of Ruby but we really want to leave this alone and use RVM.
 
 1. Install RVM
-        curl -L https://get.rvm.io | bash -s stable`
+        `curl -L https://get.rvm.io | bash -s stable`
 
 2. Verify RVM install
-        rvm --version`
+        `rvm --version`
 
 3. Install Ruby
-        rvm install 2.1.0`
+        `rvm install 2.1.0`
 
 4. Close and reopen all Terminal windows
    
 5. Set default Ruby version
-        rvm --default use 2.1.0`
+        `rvm --default use 2.1.0`
 
 6. Verify Ruby version
-        ruby -v`
+        `ruby -v`
 
 ### VirtualBox
 
