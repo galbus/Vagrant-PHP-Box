@@ -79,12 +79,12 @@ OSX comes it's own copy of Ruby but we really want to leave this alone and use R
 
       rvm install 2.1.0
 
-4. Close and reopen all Terminal windows
-   
-5. Set default Ruby version
+4. Set default Ruby version
 
         rvm --default use 2.1.0
 
+5. Close and reopen all Terminal windows
+   
 6. Verify Ruby version
 
         ruby -v
