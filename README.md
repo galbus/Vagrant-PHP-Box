@@ -66,6 +66,15 @@ OSX comes it's own copy of Ruby but we really want to leave this alone and use R
 
         rvm install 2.1.0
 
+  a. If you get brew errors then run the following (instructions from [here](http://stackoverflow.com/a/14539521) and [here](http://stackoverflow.com/a/11706900))
+
+          sudo chown -R $USER /usr/local/include
+          sudo chgrp -R admin /usr/local
+          sudo chmod -R g+rwx /usr/local
+          sudo chmod -R o-w /usr/local
+          brew update
+          brew doctor
+
 4. Close and reopen all Terminal windows
    
 5. Set default Ruby version
