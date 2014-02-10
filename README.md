@@ -12,7 +12,7 @@ First, **make sure any [System Prerequisites](#system-prerequisites) are satisfi
 
     mkdir ~/Sites/project
     cd ~/Sites/project
-    git submodule add git://github.com/galbus/Vagrant-PHP-Box.git vagrant
+    git submodule add git://github.com/galbus/Vagrant-PHP-Box vagrant
     git submodule update
     cd vagrant
     vagrant up
