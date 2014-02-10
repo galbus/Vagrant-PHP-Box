@@ -8,7 +8,7 @@ A Vagrantfile & Puppet manifest that will set you up with:
 
 ## Using the Git Submodule
 
-First, **make sure any System Prerequisites are satisfied** (see below).
+First, **make sure any [System Prerequisites](#system-prerequisites) are satisfied** (see below).
 
     mkdir ~/Sites/project
     cd ~/Sites/project
