@@ -12,6 +12,7 @@ First, **make sure any [System Prerequisites](#system-prerequisites) are satisfi
 
     cd ~/Sites/myproject
     git submodule add https://github.com/galbus/Vagrant-PHP-Box.git vagrant
+    git commit -m 'commit for submodule vagrant'
     cd vagrant
     vagrant up
 
