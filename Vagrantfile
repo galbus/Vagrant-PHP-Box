@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# http://joshuaestes.me/post/46145838113/vagrant-puppet-and-symfony2-the-three-musketeers
-
 Vagrant.configure("2") do |config|
 
   config.vm.box = "precise64"
@@ -26,7 +24,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file  = "site.pp"
-    puppet.options        = "--verbose --debug"
+#   puppet.options        = "--verbose --debug"
   end
   
 end
