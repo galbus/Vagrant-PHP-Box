@@ -14,7 +14,7 @@ apache::vhost { 'app.local':
             options        => ['+FollowSymlinks'],
             directoryindex => 'index.php', 
             order          => 'allow,deny',
-            override       => 'All',
+            allow_override => ['All'],
             allow          => 'from all',
         },
     ],
