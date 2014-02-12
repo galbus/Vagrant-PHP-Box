@@ -43,7 +43,6 @@ class { "apache":
     default_vhost => false,
 }
 
-class { "apache::mod::alias": }
 class { "apache::mod::auth_basic": }
 class { "apache::mod::cache": }
 class { "apache::mod::cgi": }
