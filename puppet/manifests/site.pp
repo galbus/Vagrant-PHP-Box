@@ -43,34 +43,9 @@ class { "apache":
     default_vhost => false,
 }
 
-class { "apache::mod::auth_basic": }
-class { "apache::mod::cache": }
-class { "apache::mod::cgi": }
-class { "apache::mod::dav": }
-class { "apache::mod::dav_fs": }
-class { "apache::mod::deflate": }
-class { "apache::mod::dir": }
-class { "apache::mod::expires": }
-class { "apache::mod::headers": }
-class { "apache::mod::include": }
-class { "apache::mod::info": }
-class { "apache::mod::ldap": }
-class { "apache::mod::mime": }
-class { "apache::mod::mime_magic": }
-class { "apache::mod::negotiation": }
 class { "apache::mod::php": }
-class { "apache::mod::proxy": }
-class { "apache::mod::proxy_ajp": }
-class { "apache::mod::proxy_balancer": }
-class { "apache::mod::proxy_http": }
 class { "apache::mod::rewrite": }
-class { "apache::mod::rewrite": }
-class { "apache::mod::setenvif": }
 class { "apache::mod::ssl": }
-class { "apache::mod::status": }
-class { "apache::mod::userdir": }
-class { "apache::mod::vhost_alias": }
-
 
 class { '::mysql::server':
     root_password => 'password',
