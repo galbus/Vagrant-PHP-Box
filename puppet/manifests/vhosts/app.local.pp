@@ -8,13 +8,12 @@ apache::vhost { 'app.local':
     require    => File['/var/www/app.local'],
     log_level  => 'notice',
     setenv     => ['APPLICATION_ENV development'],
+    override   => ['All'],
     directories => [
         { 
             path           => '/var/www/app.local/public', 
-#            options        => ['+FollowSymlinks MultiViews'],
             options        => ['+FollowSymlinks'],
-            directoryIndex => 'index.php', 
-            override       => ['All'],
+            directoryindex => 'index.php', 
             order          => 'allow,deny',
             allow          => 'from all',
         },
