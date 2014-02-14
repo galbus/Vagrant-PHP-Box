@@ -63,11 +63,15 @@ OSX comes it's own copy of Ruby but we really want to leave this alone and use R
 
 1. Install RVM
 
-        curl -L https://get.rvm.io | bash -s stable
+        curl -sSL https://get.rvm.io | bash -s stable
 
 2. Verify RVM install
 
         rvm --version
+
+  If you get an "RVM ... is already installed" message then just
+
+        rvm reload
 
 3. Install Ruby
 
@@ -112,7 +116,7 @@ The Puppet site recommends installing Puppet, Facter and Hiera from packages, bu
 
 Instead, install using:
 
-`gem install puppet`
+    gem install puppet
 
 And it all works OK for me.
 
