@@ -8,7 +8,15 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :private_network, ip: "10.33.33.10"
   config.vm.hostname = "app.local"
-  config.vm.synced_folder "../", "/var/www/app.local", :nfs => false
+
+  config.vm.synced_folder "../", "/var/www/app.local", 
+    :nfs => false
+
+  config.vm.synced_folder "../data", "/var/www/app.local/data", 
+    :owner => 'vagrant',
+    :group => 'www-data',
+    :mount_options => ['dmode=775','fmode=664'],
+    :nfs => false
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]

@@ -33,8 +33,6 @@ exec { "apt-update":
 
 file { "/var/www/app.local":
     ensure  => "directory",
-    mode    => "0775",
-    recurse => true,
 }
 
 file { "/var/www/app.local/data":
