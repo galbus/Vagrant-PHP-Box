@@ -10,6 +10,7 @@ $dependencies = [
     "php5-mcrypt",
     "php5-memcache",
     "php5-memcached",
+    "php5-mysql",
     "php5-odbc",
     "php5-sqlite",
     "php5-tidy",
@@ -32,10 +33,16 @@ exec { "apt-update":
 
 file { "/var/www/app.local":
     ensure  => "directory",
-    #owner   => "www-data",
-    #group   => "www-data",
-    #mode    => "0775",
+    mode    => "0775",
     recurse => true,
+}
+
+file { "/var/www/app.local/data":
+    ensure  => "directory",
+    group   => "www-data",
+    mode    => "0775",
+    recurse => true,
+    require => File['/var/www/app.local'],
 }
 
 class { "apache": 
