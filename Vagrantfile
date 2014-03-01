@@ -9,10 +9,10 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: "10.33.33.10"
   config.vm.hostname = "app.local"
 
-  config.vm.synced_folder "../", "/var/www/app.local", 
+  config.vm.synced_folder "../", "/var/www/app.local",
     :nfs => false
 
-  config.vm.synced_folder "../data", "/var/www/app.local/data", 
+  config.vm.synced_folder "../data", "/var/www/app.local/data",
     :owner => 'vagrant',
     :group => 'www-data',
     :mount_options => ['dmode=775','fmode=664'],
@@ -30,9 +30,13 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "puppet/manifests"
+    if File.exists?(File.expand_path("../puppet/manifests/site.pp", __FILE__)) then
+      puppet.manifests_path = "../puppet/manifests"
+    else
+      puppet.manifests_path = "puppet/manifests"
+    end
     puppet.manifest_file  = "site.pp"
 #   puppet.options        = "--verbose --debug"
   end
-  
+
 end
