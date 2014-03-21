@@ -18,6 +18,12 @@ Vagrant.configure("2") do |config|
     :mount_options => ['dmode=775','fmode=664'],
     :nfs => false
 
+  config.vm.synced_folder "../public/uploads/", "/var/www/app.local/public/uploads/",
+    :owner => 'vagrant',
+    :group => 'www-data',
+    :mount_options => ['dmode=775','fmode=664'],
+    :nfs => false
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "512"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
