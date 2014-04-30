@@ -6,51 +6,9 @@ A Vagrantfile & Puppet manifest that will set you up with:
 * MySQL
 * PHP
 
-## Using as a Git Submodule in your project
+## Installing System Prerequisites (OSX Mountain Lion)
 
-First, **make sure any [System Prerequisites](#system-prerequisites) are satisfied** (see below).
-
-    cd ~/Sites/myproject
-    git submodule add https://github.com/galbus/Vagrant-PHP-Box.git vagrant
-    git commit -m 'commit for submodule vagrant'
-    cd vagrant
-    vagrant up
-
-Next,
-
-    sudo vi /etc/hosts
-
-and add the following host:
-
-    10.33.33.10 app.local
-
-Assuming that your DocumentRoot is `/public/`, your site will now be available at http://app.local.
-
-If required, the DocumentRoot and other VM/LAMP settings can be adjusted in the config files...
-
-_(Use_ `vagrant reload` _after changing any settings)_
-
-### Vagrantfile
-
-`Vagrantfile`
-
-The Vagrantfile is mainly used to set the VM URL, hostname and VM params (e.g. memory) as well as set the Puppet file paths.
-
-### Puppet Manifest
-
-`puppet/manifests/site.pp`
-
-The Puppet files deal with the installation of Apache, MySQL and PHP and any other other terminal commands that are applied to the VM when it is set up.
-
-### Virtual Hosts
-
-`puppet/manifests/vhosts/app.local.pp`
-
-To add more vhosts simply drop more `*.pp` files into this directory.
-
-## System Prerequisites
-
-Instructions for installing required programs on OSX Mountain Lion.
+Been here before? Installed everything you need? Then continue on to [Add as a Git Submodule](#add-as-a-git-submodule).
 
 ### XCode & Command Line Tools
 
@@ -102,15 +60,19 @@ OSX comes it's own copy of Ruby but we really want to leave this alone and use R
 
 ### VirtualBox
 
-VirtualBox 4.2 is required!
+An older version - VirtualBox 4.2 is required.
 
 Download this version from https://www.virtualbox.org/wiki/Download_Old_Builds_4_2.
 
 ### Vagrant
 
-Download and install the latest version from http://www.vagrantup.com.
+**DO NOT** use gem to install Vagrant!
+
+Download the DMG and install the latest version from http://www.vagrantup.com.
 
 ### Puppet
+
+**DO NOT** use gem to install Puppet! The Gem install of Librarian only works with the native Puppet package - we use the Gem package due to install issues across OSX versions.
 
 The Puppet site recommends installing Puppet, Facter and Hiera from packages, but I found this only caused problems across different OSX platforms.
 
@@ -118,25 +80,60 @@ Instead, install using:
 
     gem install puppet
 
-And it all works OK for me.
+## Add as a Git Submodule
 
-## DO NOT...
+    cd ~/Sites/myproject
+    git submodule add https://github.com/galbus/Vagrant-PHP-Box.git vagrant
+    git commit -m 'commit for submodule vagrant'
+    cd vagrant
+    vagrant up
 
-**DO NOT** `gem install vagrant`. Install the Vagrant binary from www.vagrantup.com.
+Next,
 
-**DO NOT** `gem install librarian-puppet`. The Gem install of Librarian only works with the native Puppet package - we use the Gem package due to install issues across OSX versions.
+    sudo vi /etc/hosts
+
+and add the following host:
+
+    10.33.33.10 app.local
+
+(or whatever domain(s) you are using if you're using custom Puppet manifests - see [Puppet Manifests](#puppet-manifests) below)
+
+Assuming that your DocumentRoot is `/public/`, your site will now be available under e.g. http://app.local.
+
+If required, the DocumentRoot and other VM/LAMP settings can be adjusted in the config files...
+
+_(Use_ `vagrant reload` _after changing any settings)_
+
+### Vagrantfile
+
+`Vagrantfile`
+
+The Vagrantfile is mainly used to set the VM URL, hostname and VM params (e.g. memory) as well as set the Puppet file paths.
+
+### Puppet Manifests
+
+1. The default file at `puppet/manifests/site.pp` deals with the installation of Apache, MySQL and PHP and any other other terminal commands that are applied to the VM during provisioning.
+2. The default file at `puppet/manifests/vhosts/app.local.pp` creates a single vhost accessible under http://app.local.
+
+These default files can be overridden by copying the puppet directory into the project root (one level above). e.g:
+
+    cp -r puppet ../puppet
+
+Now you can add specific packages or versions at `../puppet/manifests/site.pp` or you could e.g. add multiple files at `../puppet/manifests/vhosts/` to set up multiple Virtual Hosts.
 
 ## TODO
 
 Add support for...
 
-1. CentOS/RHEL (e.g. use yum instead of apt-get)
-2. MySQL schema import on provisioning
-3. MySQL updates
-4. Use YAML config file instead of editing Vagrantfile and site.pp
-5. Node.js
-6. Mongo/Redis
-7. Clusters
+1. Different DocumentRoot directories (currently only /public is supported)
+2. CentOS/RHEL (e.g. use yum instead of apt-get)
+3. MySQL schema import on provisioning
+4. MySQL updates
+5. Use YAML config file instead of editing Vagrantfile and site.pp
+6. Node.js
+7. Mongo/Redis
+8. Clusters
+9. Support for Linux/Windows VM hosts
 
 ## References & Further Reading
 

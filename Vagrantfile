@@ -1,6 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+begin
+  load '../Vagrantfile.synced_folders'
+  puts "../Vagrantfile.synced_folders loaded"
+rescue LoadError
+  puts "../Vagrantfile.synced_folders not found"
+  puts "Copy Vagrantfile.synced_folders.dist into the project root and edit to set up synced folders. e.g:"
+  puts "  cp Vagrantfile.synced_folders.dist ../Vagrantfile.synced_folders"
+  puts "  vi Vagrantfile.synced_folders"
+end
+
 Vagrant.configure("2") do |config|
 
   config.vm.box = "precise64"
@@ -12,12 +22,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "../", "/var/www/app.local",
     :nfs => false
 
-  config.vm.synced_folder "../data", "/var/www/app.local/data",
-    :owner => 'vagrant',
-    :group => 'www-data',
-    :mount_options => ['dmode=775','fmode=664'],
-    :nfs => false
-
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "512"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -25,9 +29,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell do |shell|
     shell.inline = "mkdir -p /etc/puppet/modules;
-                    puppet module install puppetlabs/apache --version 0.11.0;
-                    puppet module install puppetlabs/mysql --version 2.1.0;
-                    puppet module install thias/php --version 0.3.9;"
+                    puppet module install puppetlabs/apache;
+                    puppet module install puppetlabs/mysql;
+                    puppet module install thias/php;
+                    puppet module install leinaddm/htpasswd;"
   end
 
   config.vm.provision :puppet do |puppet|
