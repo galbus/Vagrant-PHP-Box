@@ -86,6 +86,7 @@ Instead, install using:
     git submodule add https://github.com/galbus/Vagrant-PHP-Box.git vagrant
     git commit -m 'commit for submodule vagrant'
     cd vagrant
+    cp -r puppet ../puppet
     vagrant up
 
 Next,
@@ -112,14 +113,13 @@ The Vagrantfile is mainly used to set the VM URL, hostname and VM params (e.g. m
 
 ### Puppet Manifests
 
-1. The default file at `puppet/manifests/site.pp` deals with the installation of Apache, MySQL and PHP and any other other terminal commands that are applied to the VM during provisioning.
-2. The default file at `puppet/manifests/vhosts/app.local.pp` creates a single vhost accessible under http://app.local.
+If, during install, you did `cp -r puppet ../puppet` then the default Puppet files are overridden by files that should now exist in your project root in the 'puppet' directory.
 
-These default files can be overridden by copying the puppet directory into the project root (one level above). e.g:
+The default `puppet/manifests/site.pp` file deals with the installation of Apache, MySQL and PHP and any other other terminal commands that are applied to the VM during provisioning.
 
-    cp -r puppet ../puppet
+The default `puppet/manifests/vhosts/app.local.pp` file creates a single vhost accessible under http://app.local.
 
-Now you can add specific packages or versions at `../puppet/manifests/site.pp` or you could e.g. add multiple files at `../puppet/manifests/vhosts/` to set up multiple Virtual Hosts.
+You can add specific packages or versions at `/puppet/manifests/site.pp` or you could e.g. add multiple files at `/puppet/manifests/vhosts/` to set up multiple Virtual Hosts and the configuration will be stored in your repository.
 
 ## TODO
 
