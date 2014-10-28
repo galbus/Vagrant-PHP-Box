@@ -6,7 +6,7 @@ A Vagrantfile & Puppet manifest that will set you up with:
 * MySQL
 * PHP
 
-## Installing System Prerequisites (OSX Mountain Lion)
+## Installing System Prerequisites (OSX Mountain Lion/Mavericks)
 
 Been here before? Installed everything you need? Then continue on to [Add as a Git Submodule](#add-as-a-git-submodule).
 
