@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell do |shell|
     shell.inline = "mkdir -p /etc/puppet/modules;
-                    puppet module install puppetlabs/apache;
+                    puppet module install puppetlabs/apache --version 1.1.1;
                     puppet module install puppetlabs/mysql;
                     puppet module install thias/php;
                     puppet module install leinaddm/htpasswd;"
