@@ -87,6 +87,7 @@ Instead, install using:
     git commit -m 'commit for submodule vagrant'
     cd vagrant
     cp -r puppet ../puppet
+    cp Vagrantfile.local.dist ../Vagrantfile.local
     vagrant up
 
 Next,
