@@ -74,7 +74,7 @@ class { '::mysql::server':
 }
 
 mysql::db { 'database':
-  user     => 'root',
+  user     => 'dbuser',
   password => 'password',
   host     => 'localhost',
   grant    => ['ALL'],
