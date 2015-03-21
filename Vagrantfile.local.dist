@@ -1,0 +1,67 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# *****************************************************************
+# Copy this file to one level above (project root) and customise to
+# set up synced folders with specific system permissions
+# *****************************************************************
+ 
+Vagrant.configure("2") do |config|
+
+  # *********************
+  # Box Details
+  # *********************
+
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  # *********************
+  # Networking Options
+  # *********************
+
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :private_network, ip: "10.33.33.10"
+  config.vm.hostname = "app.local"
+
+  # *********************
+  # Synced folders
+  # *********************
+
+  config.vm.synced_folder "../", "/var/www/app.local",
+    :nfs => false
+
+  # Allow the server to write to the following directories
+  paths = [
+    "public/uploads/",
+  ]
+
+  paths.each { |path| 
+    config.vm.synced_folder "../#{path}", "/var/www/app.local/#{path}",
+      :owner => 'vagrant',
+      :group => 'www-data',
+      :mount_options => ['dmode=775','fmode=664'],
+      :nfs => false
+  }
+
+  # *********************
+  # Virtualbox Settings
+  # *********************
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
+  # *********************
+  # Puppet Modules
+  # *********************
+
+  config.vm.provision :shell do |shell|
+    shell.inline = "mkdir -p /etc/puppet/modules;
+                    puppet module install puppetlabs/apache --version 1.1.1;
+                    puppet module install puppetlabs/mysql;
+                    puppet module install example42-php;
+                    puppet module install leinaddm/htpasswd;"
+  end
+
+end

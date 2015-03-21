@@ -38,7 +38,7 @@ file { "/var/www/app.local":
 file { "/var/www/app.local/data":
     ensure  => "directory",
     group   => "www-data",
-    mode    => "0775",
+    mode    => "0755",
     recurse => true,
     require => File['/var/www/app.local'],
 }
@@ -48,6 +48,7 @@ class { "apache":
     default_vhost => false,
 }
 
+class { "apache::mod::headers": }
 class { "apache::mod::php": }
 class { "apache::mod::rewrite": }
 class { "apache::mod::ssl": }
@@ -55,16 +56,30 @@ class { "apache::mod::ssl": }
 class { '::mysql::server':
     root_password => 'password',
     override_options => {
-        'mysqld' => { 
-            'max_connections' => '1024',
-        } 
-    },
-    databases => {
-        'database' => {
-            ensure  => 'present',
-            charset => 'utf8',
+        'client' => {
+            'default-character-set' => 'utf8'
         },
-    },
+        'mysql' => {
+            'default-character-set' => 'utf8'
+        },
+        'mysqld' => {
+            'collation-server' => 'utf8_unicode_ci',
+            'init-connect' => 'SET NAMES utf8',
+            'character-set-server' => 'utf8',
+            'max_connections' => '1024',
+            'skip-external-locking' => nil,
+            'skip-name-resolve' => nil
+        }
+    }
+}
+
+mysql::db { 'database':
+  user     => 'root',
+  password => 'password',
+  host     => 'localhost',
+  grant    => ['ALL'],
+  sql      => '/var/www/app.local/puppet/sql/bk.dev.sql',
+  import_timeout => 900,
 }
 
 # vhost config files
